@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StickyIndicator">
+        <attr name="backColor" format="color"/>
+        <attr name="color" format="color"/>
+        <attr name="count" format="integer"/>
+        <attr name="interval" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="allowAnim" format="boolean"/>
+        <attr name="currentIndex" format="integer"/>
+        <attr name="style" format="enum">
+            <enum name="fill" value="0"/>
+            <enum name="stroke" value="1"/>
+            <enum name="strip" value="2"/>
+        </attr>
+        <attr name="stripWidth" format="dimension"/>
+        <attr name="stripHeight" format="dimension"/>
+        <attr name="hideBack" format="boolean"/>
+        <attr name="hideFlash" format="boolean"/>
+        <attr name="indicatorClickable" format="boolean"/>
+    </declare-styleable>
+</resources>
