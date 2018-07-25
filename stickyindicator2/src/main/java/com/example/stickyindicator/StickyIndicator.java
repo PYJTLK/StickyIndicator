@@ -190,7 +190,7 @@ public class StickyIndicator extends View{
 
     private Context mContext;
 
-    private OnIndicatorClickListener mIndicatorClickListener;
+    private IndicatorListener mIndicatorListener;
 
     public StickyIndicator(Context context) {
         this(context,null);
@@ -439,8 +439,8 @@ public class StickyIndicator extends View{
 
             case MotionEvent.ACTION_UP:
                 if(pointerOnPosition(eventX,eventY) == downOnPosition &&
-                        mIndicatorClickListener != null){
-                    mIndicatorClickListener.onIndicatorClicked(downOnPosition);
+                        mIndicatorListener != null){
+                    mIndicatorListener.onIndicatorClicked(downOnPosition);
                 }
                 return true;
         }
@@ -562,6 +562,10 @@ public class StickyIndicator extends View{
         mLastIndex = mCurrentIndex;
         mCurrentIndex = newPosition;
 
+        if(mIndicatorListener != null){
+            mIndicatorListener.onIndicatorSelected(newPosition);
+        }
+
         runAnim();
     }
 
@@ -634,9 +638,9 @@ public class StickyIndicator extends View{
      * 设置指示器点击监听器
      * @param listener
      */
-    public void setOnIndicatorClickedListener(OnIndicatorClickListener listener){
+    public void setOnIndicatorClickedListener(IndicatorListener listener){
         setIndicatorClickable(true);
-        mIndicatorClickListener = listener;
+        mIndicatorListener = listener;
     }
 
     /**
@@ -687,11 +691,17 @@ public class StickyIndicator extends View{
     /**
      * 指示器点击监听器,用于监听圆点/长条的点击事件
      */
-    public interface OnIndicatorClickListener{
+    public interface IndicatorListener {
         /**
          * 圆点/长条点击处理
          * @param position
          */
         void onIndicatorClicked(int position);
+
+        /**
+         * 选中时的处理
+         * @param position
+         */
+        void onIndicatorSelected(int position);
     }
 }
